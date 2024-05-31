@@ -49,4 +49,19 @@ public class exam001Test {
         assertThatThrownBy(() -> math.mathTest002(10, 101))
                 .isInstanceOf(Exception.class);
     }
+
+    @Test
+    public void  comp001() throws Exception {
+        // Given 테스트하기 위한 준비 동작
+        MathExam math = new MathExam();
+        // When
+        // Then
+        assertThat(-1).isEqualTo(math.mathTest004(2, 3));
+        assertThat(1).isEqualTo(math.mathTest004(11, 11));
+        assertThat(-1).isEqualTo(math.mathTest004(7, 99));
+        assertThatThrownBy(() -> math.mathTest004(-1, 10))
+                .isInstanceOf(Exception.class);
+        assertThatThrownBy(() -> math.mathTest004(10, 10001))
+                .isInstanceOf(Exception.class);
+    }
 }
