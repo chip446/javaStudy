@@ -64,10 +64,10 @@ public class MathExam {
             throw new Exception(String.format("price는 10원 단위이어야 합니다."));
         }
         double result = 0;
-        if (price >= 100000) {
+        if (price >= 100000 && price < 300000) {
             result = price * 0.95;
         }
-        else if (price >= 300000) {
+        else if (price >= 300000 && price < 500000) {
             result = price * 0.9;
         }
         else if (price >= 500000) {
