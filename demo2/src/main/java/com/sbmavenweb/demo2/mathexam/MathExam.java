@@ -70,7 +70,7 @@ public class MathExam {
         else if (price >= 300000) {
             result = price * 0.9;
         }
-        else if (price >= 50000) {
+        else if (price >= 500000) {
             result = price * 0.80;
         }
 
