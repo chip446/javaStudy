@@ -57,6 +57,23 @@ public class MathExam {
     }
 
     public int exam120818(int price) throws Exception {
-        return 0;
+        if (price < 10 || price > 1000000) {
+            throw new Exception(String.format("price는 10~1000000 이어야 합니다."));
+        }
+        if (price % 10 != 0) {
+            throw new Exception(String.format("price는 10원 단위이어야 합니다."));
+        }
+        double result = 0;
+        if (price >= 100000) {
+            result = price * 0.95;
+        }
+        else if (price >= 300000) {
+            result = price * 0.9;
+        }
+        else if (price >= 500000) {
+            result = price * 0.80;
+        }
+
+        return (int) result;
     }
 }
