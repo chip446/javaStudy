@@ -157,4 +157,33 @@ public class exam001Test {
         assertThat(math.exam120899(new int[] {1, 8, 3})).isEqualTo(new int[] {8, 1});
         assertThat(math.exam120899(new int[] {9, 10, 11, 8})).isEqualTo(new int[] {11, 2});
     }
+
+    @Test
+    public void numberPrint() throws Exception {
+        int x = 0b1011, y = 0206, z = 0x2A0F;
+        char a = 'A', b = 'B', c = 'C';
+
+        System.out.println(String.format("10진수 : x=%d, y=%d, z=%d", x, y, z));
+        System.out.println(String.format("8진수 : x=%o, y=%o, z=%o", x, y, z));
+        System.out.println(String.format("16진수 : x=%x, y=%x, z=%x", x, y, z));
+        System.out.println(String.format("Char : x=%c, y=%c, z=%c", x, y, z));
+
+        System.out.println(String.format("10진수 : a=%d, b=%d, c=%d", (int)a, (int)b, (int)c));
+        System.out.println(String.format("8진수 : a=%o, b=%o, c=%o", (int)a, (int)b, (int)c));
+        System.out.println(String.format("16진수 : a=%x, b=%x, c=%x", (long)a, (byte)b, (short)c)); //정수형이면 됨
+        System.out.println(String.format("Char : a=%c, b=%c, c=%c", a, b, c)); //char는 변환필요X
+    }
+
+    //0607
+    @Test
+    public void exam1045() throws Exception {
+        System.out.println("exam1045");
+        MathExam math = new MathExam();
+        Throwable ex1 = assertThrows(Exception.class, () -> math.exam1045(-1, 1));
+        System.out.println(ex1.toString());
+        Throwable ex3 = assertThrows(Exception.class, () -> math.exam1045(0, 0));
+        System.out.println(ex3.toString());
+
+        assertThat(math.exam1045(10, 3)).isEqualTo(new double[] {13, 7, 30, 3, 1, 3.33});
+    }
 }

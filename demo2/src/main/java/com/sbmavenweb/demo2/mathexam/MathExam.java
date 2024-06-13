@@ -174,4 +174,16 @@ public class MathExam {
 
         return result;
     }
+
+    //0607
+    public double[] exam1045(int a, int b) throws Exception {
+        if (a < 0) {
+            throw new Exception(String.format("a는 0 이상이어야 합니다."));
+        }
+        if (b > 2147483647 || b == 0) {
+            throw new Exception(String.format("b는 0이 아니고 2147483647 이하여야 합니다."));
+        }
+
+        return new double[] {a+b, a-b, a*b, a/b, a%b, Math.round(((double)a/b * 100) / 100.0)};
+    }
 }
