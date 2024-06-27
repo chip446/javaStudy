@@ -33,23 +33,12 @@ public class PhoneBookServiceImpl implements IPhoneBookService<IPhoneBook> {
      */
     @Override
     public Long getMaxId() {
-        Long nMax = 0L;
-        for ( IPhoneBook obj : this.list ) {
-            if ( nMax < obj.getId() ) {
-                nMax = obj.getId();
-            }
-        }
-        return ++nMax;
+        return this.list.stream().mapToLong(IPhoneBook::getId).max().orElse(0L) + 1;
     }
 
     @Override
     public IPhoneBook findById(Long id) {
-        for ( IPhoneBook obj : this.list ) {
-            if ( id.equals(obj.getId()) ) {
-                return obj;
-            }
-        }
-        return null;
+        return this.list.stream().filter(obj -> id.equals(obj.getId())).findFirst().orElse(null);
     }
 
     @Override
@@ -95,56 +84,27 @@ public class PhoneBookServiceImpl implements IPhoneBookService<IPhoneBook> {
     }
 
     private int findIndexById(Long id) {
-        for ( int i = 0; i < this.list.size(); i++ ) {
-            if ( id.equals(this.list.get(i).getId()) ) {
-                return i;
-            }
-        }
-        return -1;
+        return this.list.indexOf(this.findById(id));
     }
 
     @Override
     public List<IPhoneBook> getListFromName(String findName) {
-        List<IPhoneBook> findArr = new ArrayList<>();
-        for ( IPhoneBook phoneBook : this.list ) {
-            if (phoneBook.getName().contains(findName)) {
-                findArr.add(phoneBook);
-            }
-        }
-        return findArr;
+        return this.list.stream().filter(obj -> obj.getName().contains(findName)).toList();
     }
 
     @Override
     public List<IPhoneBook> getListFromGroup(EPhoneGroup phoneGroup) {
-        List<IPhoneBook> findArr = new ArrayList<>();
-        for ( IPhoneBook phoneBook : this.list ) {
-            if (phoneGroup.equals(phoneBook.getGroup())) {
-                findArr.add(phoneBook);
-            }
-        }
-        return findArr;
+        return this.list.stream().filter(obj -> phoneGroup.equals(obj.getGroup())).toList();
     }
 
     @Override
     public List<IPhoneBook> getListFromPhoneNumber(String findPhone) {
-        List<IPhoneBook> findArr = new ArrayList<>();
-        for ( IPhoneBook phoneBook : this.list ) {
-            if (phoneBook.getPhoneNumber().contains(findPhone)) {
-                findArr.add(phoneBook);
-            }
-        }
-        return findArr;
+        return this.list.stream().filter(obj -> obj.getPhoneNumber().contains(findPhone)).toList();
     }
 
     @Override
     public List<IPhoneBook> getListFromEmail(String findEmail) {
-        List<IPhoneBook> findArr = new ArrayList<>();
-        for ( IPhoneBook phoneBook : this.list ) {
-            if (phoneBook.getEmail().contains(findEmail)) {
-                findArr.add(phoneBook);
-            }
-        }
-        return findArr;
+        return this.list.stream().filter(obj -> obj.getEmail().contains(findEmail)).toList();
     }
 
     @Override

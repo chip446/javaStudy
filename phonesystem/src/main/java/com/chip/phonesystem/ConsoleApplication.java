@@ -74,10 +74,28 @@ public class ConsoleApplication {
         System.out.print("연락처 이름 :");
         String name = input.nextLine();
         EPhoneGroup group = this.getGroupFromScanner(input, "");
-        System.out.print("전화번호 :");
+        System.out.print("전화번호(11자리 숫자) :");
         String phone = input.nextLine();
+        try {
+            String phone2 = phone.replaceAll("-", "");
+            Long.parseLong(phone2);
+            if (phone2.length() != 11) {
+                System.out.println("에러: 전화번호는 11자리의 숫자만 입력하세요.");
+                return;
+            }
+        } catch (Exception ex) {
+            System.out.println("에러: 전화번호는 숫자로만 입력하세요.");
+            return;
+        }
+
         System.out.print("이메일 :");
         String email = input.nextLine();
+
+        if (name.isEmpty() || phone.isEmpty() || email.isEmpty()) {
+            System.out.println("결과: 데이터 추가 실패하였습니다.");
+            System.out.println("에러: 이름, 전화번호, 이메일 중 잘못된 입력이 있습니다.");
+            return;
+        }
 
         if (this.phoneBookService.insert(name, group, phone, email)) {
             this.phoneBookService.saveData();
@@ -172,5 +190,9 @@ public class ConsoleApplication {
 
         List<IPhoneBook> list = this.phoneBookService.getListFromEmail(findEmail);
         this.printList(list);
+    }
+
+    public void inserName(Scanner input) {
+
     }
 }
