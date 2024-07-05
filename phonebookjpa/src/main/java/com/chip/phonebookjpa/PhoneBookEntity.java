@@ -21,8 +21,7 @@ public class PhoneBookEntity implements IPhoneBook {
     private String name;
 
     @NotNull
-    @Column(length = 10)
-    private String category;
+    private ECategory category;
 
     @NotNull
     @Column(length = 20)
