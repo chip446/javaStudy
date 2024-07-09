@@ -65,11 +65,12 @@ public class PhoneBookServiceImpl implements IPhoneBookService<IPhoneBook> {
     @Override
     public IPhoneBook update(Long id, IPhoneBook phoneBook) {
         IPhoneBook find = this.findById(id);
-        if ( find != null ) {
-            find.copyFields(phoneBook);
-            return this.phoneBookJpaRepository.saveAndFlush((PhoneBookEntity) find);
+        if ( find == null ) {
+            return null;
         }
-        return null;
+        find.copyFields(phoneBook);
+        PhoneBookEntity result = this.phoneBookJpaRepository.saveAndFlush((PhoneBookEntity) find);
+        return result;
     }
 
     @Override

@@ -38,7 +38,7 @@ public class PhoneBookController {
             if ( dto == null ) {
                 return ResponseEntity.badRequest().build();
             }
-            IPhoneBook result = (IPhoneBook) this.phoneBookService.insert(dto);
+            IPhoneBook result = this.phoneBookService.insert(dto);
             if ( result == null ) {
                 return ResponseEntity.badRequest().build();
             }
