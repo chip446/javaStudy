@@ -1,5 +1,7 @@
-package com.chip.phonebookjpa;
+package com.chip.phonebookjpa.phonebook;
 
+import com.chip.phonebookjpa.category.CategoryDto;
+import com.chip.phonebookjpa.category.CategoryEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +19,7 @@ public class PhoneBookController {
     private static Logger logger = LoggerFactory.getLogger(PhoneBookController.class);
 
     @Autowired
-    private IPhoneBookService phoneBookService;
+    private IPhoneBookService<IPhoneBook> phoneBookService;
 
     private boolean isValidInsert(IPhoneBook dto) {
         if ( dto == null ) {
@@ -36,7 +38,7 @@ public class PhoneBookController {
             if ( dto == null ) {
                 return ResponseEntity.badRequest().build();
             }
-            IPhoneBook result = this.phoneBookService.insert(dto);
+            IPhoneBook result = (IPhoneBook) this.phoneBookService.insert(dto);
             if ( result == null ) {
                 return ResponseEntity.badRequest().build();
             }
@@ -129,7 +131,8 @@ public class PhoneBookController {
             if ( category == null ) {
                 return ResponseEntity.badRequest().build();
             }
-            List<IPhoneBook> result = this.phoneBookService.getListFromGroup(ECategory.integerOf(category));
+            CategoryEntity categoryEntity = CategoryEntity.builder().id(Long.parseLong(category.toString())).build();
+            List<IPhoneBook> result = this.phoneBookService.getListFromCategory(categoryEntity);
             if(result == null || result.size() <= 0) {
                 return ResponseEntity.notFound().build();
             }

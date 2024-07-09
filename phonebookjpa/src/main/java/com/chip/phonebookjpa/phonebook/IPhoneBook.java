@@ -1,4 +1,6 @@
-package com.chip.phonebookjpa;
+package com.chip.phonebookjpa.phonebook;
+
+import com.chip.phonebookjpa.category.ICategory;
 
 import java.io.Serializable;
 
@@ -9,8 +11,8 @@ public interface IPhoneBook extends Serializable {
     String getName();
     void setName(String name);
 
-    ECategory getCategory();
-    void setCategory(ECategory category);
+    ICategory getCategory();
+    void setCategory(ICategory category);
 
     String getPhoneNumber();
     void setPhoneNumber(String phoneNumber);

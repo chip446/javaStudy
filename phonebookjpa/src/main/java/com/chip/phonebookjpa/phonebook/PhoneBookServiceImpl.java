@@ -1,5 +1,7 @@
-package com.chip.phonebookjpa;
+package com.chip.phonebookjpa.phonebook;
 
+import com.chip.phonebookjpa.category.CategoryEntity;
+import com.chip.phonebookjpa.category.ICategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,15 +26,6 @@ public class PhoneBookServiceImpl implements IPhoneBookService<IPhoneBook> {
             list.add((IPhoneBook) entity);
         }
         return list;
-    }
-
-    @Override
-    public IPhoneBook insert(String name, ECategory category, String phoneNumber, String email) throws Exception {
-        PhoneBookDto phoneBook = PhoneBookDto.builder()
-                .id(0L)
-                .name(name).category(category)
-                .phoneNumber(phoneNumber).email(email).build();
-        return this.insert(phoneBook);
     }
 
     @Override
@@ -93,11 +86,11 @@ public class PhoneBookServiceImpl implements IPhoneBookService<IPhoneBook> {
     }
 
     @Override
-    public List<IPhoneBook> getListFromGroup(ECategory category) {
+    public List<IPhoneBook> getListFromCategory(ICategory category) {
         if (category == null) {
             return new ArrayList<>();
         }
-        List<PhoneBookEntity> list = this.phoneBookJpaRepository.findAllByCategory(category);
+        List<PhoneBookEntity> list = this.phoneBookJpaRepository.findAllByCategory((CategoryEntity)category);
         List<IPhoneBook> result = list.stream()
                 .map(x -> (IPhoneBook) x)
                 .toList();

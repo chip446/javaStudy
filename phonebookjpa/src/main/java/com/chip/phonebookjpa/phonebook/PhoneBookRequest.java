@@ -1,5 +1,6 @@
-package com.chip.phonebookjpa;
+package com.chip.phonebookjpa.phonebook;
 
+import com.chip.phonebookjpa.category.ICategory;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -17,8 +18,7 @@ public class PhoneBookRequest implements IPhoneBook {
     private String name;
 
     @NotBlank
-    @Size(min = 4, max = 8)
-    private ECategory category;
+    private ICategory category;
 
     @NotBlank
     @Size(min = 0, max = 20)
