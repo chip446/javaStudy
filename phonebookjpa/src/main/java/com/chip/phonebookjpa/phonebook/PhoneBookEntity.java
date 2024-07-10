@@ -15,7 +15,7 @@ import lombok.*;
 @Table(name="phonebook_tbl")
 public class PhoneBookEntity implements IPhoneBook {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @NotNull

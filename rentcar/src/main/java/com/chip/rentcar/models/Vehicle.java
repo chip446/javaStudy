@@ -1,5 +1,7 @@
 package com.chip.rentcar.models;
 
+import com.chip.rentcar.vehicle.VehicleType;
+
 public interface Vehicle {
     public Long getId();
     public String getCompany();

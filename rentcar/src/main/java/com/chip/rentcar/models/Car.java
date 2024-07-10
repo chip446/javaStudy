@@ -1,5 +1,7 @@
 package com.chip.rentcar.models;
 
+import com.chip.rentcar.vehicle.VehicleType;
+
 public class Car implements Vehicle {
     private Long id;
     private String company;

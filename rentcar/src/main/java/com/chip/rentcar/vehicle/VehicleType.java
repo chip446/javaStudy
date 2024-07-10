@@ -1,4 +1,4 @@
-package com.chip.rentcar.models;
+package com.chip.rentcar.vehicle;
 
 public enum VehicleType {
     Sedan,
